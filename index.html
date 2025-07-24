@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Свадьба Сергея и Ларисы</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: #fffaf6;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #f2d6d0;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+    section {
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    .block {
+      margin-bottom: 30px;
+    }
+    .form-section {
+      background: #fceeee;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: 0;
+      margin-top: 15px;
+    }
+    a {
+      color: #b45151;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .countdown {
+      background: #fff3f0;
+      border: 2px solid #f2d6d0;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.5em;
+      color: #b45151;
+      margin: 30px auto;
+      max-width: 400px;
+    }
+    .countdown span {
+      display: inline-block;
+      margin: 0 10px;
+    }
+    input, button {
+      font-size: 1em;
+      padding: 8px;
+      margin-top: 5px;
+      width: 100%;
+      max-width: 300px;
+      box-sizing: border-box;
+    }
+    button {
+      background: #b45151;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #923b3b;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Сергей и Лариса</h1>
+    <p>приглашают вас на свадьбу</p>
+  </header>
+  <section>
+    <div class="block">
+      <h2>Добро пожаловать!</h2>
+      <p>Дорогие друзья! С радостью приглашаем вас отпраздновать самое важное событие в нашей жизни — нашу свадьбу! Будем очень рады разделить этот день с вами!</p>
+    </div>
+    <div class="block">
+      <h2>Подробности</h2>
+      <p>
+        <strong>Дата:</strong> 6 сентября<br>
+        <strong>Время:</strong> 17:00<br>
+        <strong>Место:</strong> Ресторан «Вкусная компания», ул. Советской Армии, д. 177<br>
+        <strong>Дресс-код:</strong> Без ограничений<br>
+        <strong>Важно:</strong> Мы с любовью относимся к детям, но в этот день хотим провести вечер в атмосфере отдыха и уюта только со взрослыми. Спасибо за понимание ♥
+      </p>
+    </div>
+    <div class="block">
+      <h2>До свадьбы осталось:</h2>
+      <div class="countdown" id="countdown">
+        <span id="days">00</span>д
+        <span id="hours">00</span>ч
+        <span id="minutes">00</span>м
+        <span id="seconds">00</span>с
+      </div>
+    </div>
+    <div class="block form-section">
+      <h2>Подтвердите участие</h2>
+      <p>Пожалуйста, заполните форму, чтобы мы знали, кого ждать на празднике:</p>
+      <form>
+        <label for="name">Имя:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="guests">Количество гостей:</label><br>
+        <input type="number" id="guests" name="guests" min="1" max="5" required><br><br>
+        <p style="color:#b45151; font-style: italic;">
+          Праздник проводится в формате взрослого торжества. Пожалуйста, без детей ♥
+        </p>
+        <button type="submit">Отправить</button>
+      </form>
+    </div>
+  </section>
+  <script>
+    const countdown = () => {
+      const weddingDate = new Date("2025-09-06T17:00:00");
+      const now = new Date();
+      const diff = weddingDate - now;
+      if (diff <= 0) {
+        document.getElementById("countdown").innerHTML = "Свадьба уже состоялась!";
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      document.getElementById("days").textContent = String(days).padStart(2, '0');
+      document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+    };
+    countdown();
+    setInterval(countdown, 1000);
+  </script>
+</body>
+</html>
